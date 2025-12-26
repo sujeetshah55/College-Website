@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawaharlal Nehru Technological University Kakinada - Excellence in Education</title>
+    
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind to use Inter font and a professional color scheme 
+         NOTE: This configuration MUST stay here in a script tag for the CDN to process custom colors/fonts. -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1e3a8a', // Deep Navy Blue
+                        'secondary': '#10b981', // Vibrant Green (Updated)
+                        'background': '#f9fafb', // Light Gray Background
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Load Custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Load Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="font-sans bg-background text-gray-800">
+
+    <!-- Global Message Box (used instead of alert/confirm) -->
+    <div id="message-box" class="fixed top-4 right-4 z-50 p-4 rounded-lg shadow-xl text-white transition-opacity duration-300 opacity-0 hidden"></div>
+
+    <!-- 1. Navigation Bar (Sticky and Responsive) -->
+    <header class="sticky top-0 z-40 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo and Name -->
+                <a href="#home" class="flex items-center space-x-2 text-xl font-extrabold text-primary transition duration-300 hover:text-secondary">
+                    <img src="https://placehold.co/40x40/1e3a8a/ffffff?text=JNTUK" alt="University Logo" class="rounded-full">
+                    <span>JNTUK</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="home">Home</a>
+                    <a href="#about" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="about">About</a>
+                    <a href="#departments" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="departments">Departments</a>
+                    <a href="#admissions" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="admissions">Admissions</a>
+                    <a href="#events" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="events">Events</a>
+                    <a href="#contact" class="nav-link text-primary hover:text-secondary font-medium transition duration-300" data-section="contact">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-primary focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-inner">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="home">Home</a>
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="about">About</a>
+                <a href="#departments" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="departments">Departments</a>
+                <a href="#admissions" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="admissions">Admissions</a>
+                <a href="#events" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="events">Events</a>
+                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/10" data-section="contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Home Section (Hero and News) -->
+        <section id="home" class="pt-16 pb-24 bg-primary text-white shadow-2xl">
+            <!-- Hero Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+                            Your Future Starts Here.
+                        </h1>
+                        <p class="text-xl opacity-90 mb-8">
+                            Empowering the next generation of innovators, leaders, and global citizens through transformative education and research.
+                        </p>
+                        <a href="#admissions" class="inline-block bg-secondary text-primary font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 hover:bg-green-500">
+                            Apply Now
+                        </a>
+                    </div>
+                    <!-- Hero Image -->
+                    <div class="order-1 lg:order-2">
+                         
+                        <img src="https://placehold.co/600x400/10b981/1e3a8a?text=JNTUK+Kakinada" alt="A vibrant college campus setting" class="rounded-xl shadow-2xl w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+            <!-- Featured News/Announcements Ticker -->
+            <div class="mt-16 overflow-hidden border-t border-b border-white/30 bg-primary/10">
+                <div class="py-2 flex whitespace-nowrap">
+                    <p id="news-ticker" class="text-sm font-semibold tracking-wider uppercase text-secondary inline-block">
+                        &bull; Orientation Week starts Sept 1st &bull; Enrollment for Spring Semester is Open &bull; Research Grant Awarded to CSE Department &bull; Annual Alumni Gala Announced &bull;
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. About Page -->
+        <section id="about" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-primary mb-16">About JNTUK</h2>
+
+                <!-- History and Vision/Mission -->
+                <div class="grid md:grid-cols-2 gap-12 mb-20">
+                    <div class="p-6 bg-background rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 flex items-center">
+                            <i data-lucide="compass" class="w-6 h-6 mr-2 text-secondary"></i> Our Vision & Mission
+                        </h3>
+                        <p class="mb-3">Our vision is to be a globally recognized center of academic excellence, fostering innovation, and driving societal change.</p>
+                        <p>Our mission is to provide rigorous, inclusive education and conduct cutting-edge research that addresses the world's most pressing challenges. We are committed to developing critical thinkers and ethical leaders.</p>
+                    </div>
+                    <div class="p-6 bg-background rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 flex items-center">
+                            <i data-lucide="history" class="w-6 h-6 mr-2 text-secondary"></i> Our History
+                        </h3>
+                        <p class="mb-3">JNTUK, tracing its origins to 1946, has evolved from a technical college to a major state university dedicated to technological advancement and educational excellence.</p>
+                        <p>Our dedication to practical learning and academic rigor has remained constant, cementing our reputation as a leader in engineering and science education across Andhra Pradesh.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Facts/Statistics -->
+                <div class="text-center mb-20">
+                    <h3 class="text-3xl font-semibold text-primary mb-8">JNTUK By The Numbers</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="p-4 bg-primary/10 rounded-xl shadow-md">
+                            <p class="text-4xl font-extrabold text-primary">50,000+</p>
+                            <p class="text-sm text-gray-600 mt-1">Affiliated Students</p>
+                        </div>
+                        <div class="p-4 bg-primary/10 rounded-xl shadow-md">
+                            <p class="text-4xl font-extrabold text-primary">270</p>
+                            <p class="text-sm text-gray-600 mt-1">Affiliated Colleges</p>
+                        </div>
+                        <div class="p-4 bg-primary/10 rounded-xl shadow-md">
+                            <p class="text-4xl font-extrabold text-primary">900+</p>
+                            <p class="text-sm text-gray-600 mt-1">Ph.D. Scholars</p>
+                        </div>
+                        <div class="p-4 bg-primary/10 rounded-xl shadow-md">
+                            <p class="text-4xl font-extrabold text-primary">30+</p>
+                            <p class="text-sm text-gray-600 mt-1">Centres of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Faculty Introduction -->
+                <h3 class="text-3xl font-semibold text-center text-primary mb-10">Meet Our Distinguished Faculty</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Faculty Card 1 -->
+                    <div class="bg-background rounded-xl shadow-xl p-6 text-center hover:shadow-2xl transition duration-300">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=Dr.J" alt="Dr. Jane Smith" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary">
+                        <h4 class="text-xl font-bold text-primary">Dr. Jane Smith</h4>
+                        <p class="text-sm text-gray-600">Head of Computer Science</p>
+                        <p class="text-sm mt-3 italic">"Pioneering AI research and education."</p>
+                    </div>
+                    <!-- Faculty Card 2 -->
+                    <div class="bg-background rounded-xl shadow-xl p-6 text-center hover:shadow-2xl transition duration-300">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=Prof.R" alt="Prof. Robert King" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary">
+                        <h4 class="text-xl font-bold text-primary">Prof. Robert King</h4>
+                        <p class="text-sm text-gray-600">Chair of Mechanical Engineering</p>
+                        <p class="text-sm mt-3 italic">"Focusing on sustainable design principles."</p>
+                    </div>
+                    <!-- Faculty Card 3 -->
+                    <div class="bg-background rounded-xl shadow-xl p-6 text-center hover:shadow-2xl transition duration-300">
+                        <img src="https://placehold.co/100x100/1e3a8a/ffffff?text=Dr.A" alt="Dr. Alice Chen" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary">
+                        <h4 class="text-xl font-bold text-primary">Dr. Alice Chen</h4>
+                        <p class="text-sm text-gray-600">Professor of Civil Engineering</p>
+                        <p class="text-sm mt-3 italic">"Expert in sustainable infrastructure."</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Departments Page -->
+        <section id="departments" class="py-24 bg-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-primary mb-16">Our Academic Departments</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Department Card 1 -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="https://placehold.co/600x300/e0f2f1/1e3a8a?text=Computer+Science" alt="Computer Science Lab" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-primary mb-2">Computer Science & Engineering (CSE)</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Focuses on theoretical foundations of information and computation, and their practical implementation through software and hardware.</p>
+                            <a href="#" class="text-secondary font-semibold hover:text-primary transition duration-300 flex items-center">
+                                View Details
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Department Card 2 -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="https://placehold.co/600x300/e0f2f1/1e3a8a?text=Electronics+Engineering" alt="Electronics Lab" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-primary mb-2">Electronics & Communication Engineering (ECE)</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Covers the design, development, and testing of electronic circuits and communication systems, including wireless technology.</p>
+                            <a href="#" class="text-secondary font-semibold hover:text-primary transition duration-300 flex items-center">
+                                View Details
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Department Card 3 -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="https://placehold.co/600x300/e0f2f1/1e3a8a?text=Mechanical+Engineering" alt="Mechanical Workshop" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-primary mb-2">Mechanical Engineering</h3>
+                            <p class="text-gray-600 mb-4 text-sm">The discipline that applies physics principles for the analysis, design, manufacturing, and maintenance of mechanical systems.</p>
+                            <a href="#" class="text-secondary font-semibold hover:text-primary transition duration-300 flex items-center">
+                                View Details
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block border border-primary text-primary font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-primary hover:text-white">
+                        Explore All Departments
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Admissions Page -->
+        <section id="admissions" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-primary mb-16">Admissions & Application</h2>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Admission Procedure -->
+                    <div>
+                        <h3 class="text-3xl font-semibold text-primary mb-6 flex items-center">
+                            <i data-lucide="clipboard-list" class="w-6 h-6 mr-2 text-secondary"></i> Procedure Steps
+                        </h3>
+                        <ol class="space-y-6">
+                            <li class="p-4 bg-background rounded-lg shadow-md flex items-start">
+                                <span class="text-2xl font-bold text-secondary mr-4">1.</span>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Review Eligibility</p>
+                                    <p class="text-sm text-gray-600">Ensure you meet the minimum academic criteria for your chosen program.</p>
+                                </div>
+                            </li>
+                            <li class="p-4 bg-background rounded-lg shadow-md flex items-start">
+                                <span class="text-2xl font-bold text-secondary mr-4">2.</span>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Fill Online Form</p>
+                                    <p class="text-sm text-gray-600">Complete the application form below with accurate details and required documents.</p>
+                                </div>
+                            </li>
+                            <li class="p-4 bg-background rounded-lg shadow-md flex items-start">
+                                <span class="text-2xl font-bold text-secondary mr-4">3.</span>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Entrance Test & Counseling</p>
+                                    <p class="text-sm text-gray-600">Shortlisted candidates will be invited for an entrance test (if applicable) and subsequent counseling.</p>
+                                </div>
+                            </li>
+                            <li class="p-4 bg-background rounded-lg shadow-md flex items-start">
+                                <span class="text-2xl font-bold text-secondary mr-4">4.</span>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Acceptance & Enrollment</p>
+                                    <p class="text-sm text-gray-600">Receive your offer letter and complete the enrollment process.</p>
+                                </div>
+                            </li>
+                        </ol>
+
+                        <div class="mt-8">
+                             <a href="#" download class="inline-flex items-center bg-primary text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover:bg-primary/90 shadow-lg">
+                                <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                                Download Admissions Brochure (PDF)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Online Application Form -->
+                    <div class="p-8 bg-background rounded-xl shadow-2xl">
+                        <h3 class="text-3xl font-semibold text-primary mb-6">Online Application Form</h3>
+                        <form id="admissions-form" class="space-y-4">
+                            <div>
+                                <label for="ad_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="ad_name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="ad_name_error" class="text-red-500 text-xs mt-1 hidden">Name is required.</p>
+                            </div>
+                            <div>
+                                <label for="ad_email" class="block text-sm font-medium text-gray-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="ad_email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="ad_email_error" class="text-red-500 text-xs mt-1 hidden">Valid email is required.</p>
+                            </div>
+                            <div>
+                                <label for="ad_program" class="block text-sm font-medium text-gray-700 mb-1">Intended Program <span class="text-red-500">*</span></label>
+                                <select id="ad_program" name="program" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300 bg-white">
+                                    <option value="">Select a program</option>
+                                    <option value="cse">B.Tech - CSE</option>
+                                    <option value="ece">B.Tech - ECE</option>
+                                    <option value="mech">B.Tech - Mechanical</option>
+                                    <option value="civil">B.Tech - Civil</option>
+                                </select>
+                                <p id="ad_program_error" class="text-red-500 text-xs mt-1 hidden">Program selection is required.</p>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary text-primary font-bold py-3 rounded-lg shadow-md transition duration-300 hover:bg-green-500 transform hover:scale-[1.01]">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Events Page -->
+        <section id="events" class="py-24 bg-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-primary mb-16">Upcoming Events & Workshops</h2>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Upcoming Events List -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <h3 class="text-3xl font-semibold text-primary mb-6">Event Highlights</h3>
+                        <!-- Event 1 -->
+                        <div class="bg-white rounded-xl shadow-xl overflow-hidden md:flex hover:shadow-2xl transition duration-300">
+                            <img src="https://placehold.co/200x200/1e3a8a/ffffff?text=Tech+Summit" alt="Tech Summit Event" class="w-full md:w-48 h-48 object-cover">
+                            <div class="p-6 flex-grow">
+                                <p class="text-sm font-bold text-secondary uppercase mb-1">Oct 20, 2025 | 10:00 AM</p>
+                                <h4 class="text-xl font-bold text-primary mb-2">Annual Tech Innovation Summit</h4>
+                                <p class="text-gray-600 text-sm">A full-day event featuring keynote speakers from major tech companies and student innovation showcases.</p>
+                                <p class="text-sm mt-3 flex items-center text-primary/70">
+                                    <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> Main Auditorium, Central Campus
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Event 2 -->
+                        <div class="bg-white rounded-xl shadow-xl overflow-hidden md:flex hover:shadow-2xl transition duration-300">
+                            <img src="https://placehold.co/200x200/1e3a8a/ffffff?text=Career+Fair" alt="Career Fair Event" class="w-full md:w-48 h-48 object-cover">
+                            <div class="p-6 flex-grow">
+                                <p class="text-sm font-bold text-secondary uppercase mb-1">Nov 5, 2025 | 09:00 AM</p>
+                                <h4 class="text-xl font-bold text-primary mb-2">JNTUK Career Placement Fair</h4>
+                                <p class="text-gray-600 text-sm">Connect with over 100 top employers offering internships and full-time positions across all disciplines.</p>
+                                <p class="text-sm mt-3 flex items-center text-primary/70">
+                                    <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> Sports Arena, South Wing
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Registration Form -->
+                    <div class="p-8 bg-white rounded-xl shadow-2xl">
+                        <h3 class="text-3xl font-semibold text-primary mb-6">Register for an Event</h3>
+                        <form id="event-registration-form" class="space-y-4">
+                            <div>
+                                <label for="ev_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="ev_name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="ev_name_error" class="text-red-500 text-xs mt-1 hidden">Name is required.</p>
+                            </div>
+                            <div>
+                                <label for="ev_email" class="block text-sm font-medium text-gray-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="ev_email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="ev_email_error" class="text-red-500 text-xs mt-1 hidden">Valid email is required.</p>
+                            </div>
+                            <div>
+                                <label for="ev_event" class="block text-sm font-medium text-gray-700 mb-1">Select Event <span class="text-red-500">*</span></label>
+                                <select id="ev_event" name="event" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300 bg-white">
+                                    <option value="">Choose an event</option>
+                                    <option value="tech_summit">Annual Tech Innovation Summit (Oct 20)</option>
+                                    <option value="career_fair">JNTUK Career Placement Fair (Nov 5)</option>
+                                </select>
+                                <p id="ev_event_error" class="text-red-500 text-xs mt-1 hidden">Event selection is required.</p>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md transition duration-300 hover:bg-primary/90 transform hover:scale-[1.01]">
+                                Register Now
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Contact Page -->
+        <section id="contact" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-primary mb-16">Get In Touch</h2>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Contact Details & Map -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <!-- Details Card -->
+                        <div class="p-6 bg-background rounded-xl shadow-xl">
+                            <h3 class="text-2xl font-semibold text-primary mb-4">Contact Information</h3>
+                            <div class="space-y-3 text-gray-700">
+                                <p class="flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-3 text-secondary"></i> JNTU Kakinada, Pithapuram Road, Kakinada - 533003, Andhra Pradesh</p>
+                                <p class="flex items-center"><i data-lucide="mail" class="w-5 h-5 mr-3 text-secondary"></i> <a href="mailto:admissions@jntuk.edu.in" class="hover:underline">admissions@jntuk.edu.in</a></p>
+                                <p class="flex items-center"><i data-lucide="phone" class="w-5 h-5 mr-3 text-secondary"></i> (0884) 2340356</p>
+                                <p class="flex items-center"><i data-lucide="calendar" class="w-5 h-5 mr-3 text-secondary"></i> Office Hours: Mon-Sat, 9:30 AM - 5:30 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Google Map Placeholder -->
+                        <div class="rounded-xl shadow-xl overflow-hidden">
+                            <h3 class="text-lg font-semibold text-primary p-4 bg-background/50">Find Us on the Map</h3>
+                            <!-- Placeholder for an embedded map focusing on Kakinada region -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15255.435759165345!2d82.23554035!3d16.99395175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3a45a300000001%3A0x6b86211d15c8e318!2sJawaharlal%20Nehru%20Technological%20University%20Kakinada!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-2 p-8 bg-background rounded-xl shadow-2xl">
+                        <h3 class="text-3xl font-semibold text-primary mb-6">Send Us a Message</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="co_name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="co_name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="co_name_error" class="text-red-500 text-xs mt-1 hidden">Name is required.</p>
+                            </div>
+                            <div>
+                                <label for="co_email" class="block text-sm font-medium text-gray-700 mb-1">Your Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="co_email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300">
+                                <p id="co_email_error" class="text-red-500 text-xs mt-1 hidden">Valid email is required.</p>
+                            </div>
+                            <div>
+                                <label for="co_message" class="block text-sm font-medium text-gray-700 mb-1">Your Message <span class="text-red-500">*</span></label>
+                                <textarea id="co_message" name="message" rows="5" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-300"></textarea>
+                                <p id="co_message_error" class="text-red-500 text-xs mt-1 hidden">Message cannot be empty.</p>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary text-primary font-bold py-3 rounded-lg shadow-md transition duration-300 hover:bg-green-500 transform hover:scale-[1.01]">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 8. Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 border-b border-white/20 pb-8 mb-8">
+                <!-- College Info -->
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold text-secondary">JNTUK</h4>
+                    <p class="text-sm">Excellence in Education since 1946. Dedicated to shaping global leaders in technology.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-secondary/50 pb-1">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-secondary transition duration-300">Our History</a></li>
+                        <li><a href="#departments" class="hover:text-secondary transition duration-300">Academic Programs</a></li>
+                        <li><a href="#admissions" class="hover:text-secondary transition duration-300">Financial Aid</a></li>
+                        <li><a href="#" class="hover:text-secondary transition duration-300">Campus Tour</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-secondary/50 pb-1">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-secondary transition duration-300">Library</a></li>
+                        <li><a href="#" class="hover:text-secondary transition duration-300">Alumni Network</a></li>
+                        <li><a href="#" class="hover:text-secondary transition duration-300">Careers at JNTUK</a></li>
+                        <li><a href="#" class="hover:text-secondary transition duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-secondary/50 pb-1">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-secondary hover:text-white transition duration-300" aria-label="Facebook">
+                            <i data-lucide="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-secondary hover:text-white transition duration-300" aria-label="Twitter">
+                            <i data-lucide="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-secondary hover:text-white transition duration-300" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-secondary hover:text-white transition duration-300" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-sm pt-4">
+                &copy; <span id="current-year"></span> Jawaharlal Nehru Technological University Kakinada. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load JavaScript file last to ensure all DOM elements are available -->
+    <script src="script.js"></script>
+
+</body>
+</html>
